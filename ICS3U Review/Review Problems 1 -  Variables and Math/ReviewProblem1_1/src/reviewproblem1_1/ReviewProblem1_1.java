@@ -16,7 +16,7 @@ public class ReviewProblem1_1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int num1 = 3;
+        int num1 = 4;
         int num2 = 10;
         int sum;
         sum = num1 + num2;
