@@ -26,7 +26,7 @@ public class ReviewChallengeProblem1 {
         int prevFibNum = 0; //the previous number used to add to the current one
         int fibNumStoreage; //a var to hold a number while working with the other 2 vars
         int evenSum = 0; //an acumulator to sum all the even fib numbers
-        int maxFibNum = 4000000; //what is the largest the number can be, easy to change it here for the whole program
+        int maxFibNum = 10000000; //what is the largest the number can be, easy to change it here for the whole program
         
         //logic
         //loop through all fib numbers less than 4 mill, and check if it is even, then add it to an acumulator
