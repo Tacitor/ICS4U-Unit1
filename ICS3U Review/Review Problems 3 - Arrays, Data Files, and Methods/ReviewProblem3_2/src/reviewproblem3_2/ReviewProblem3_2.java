@@ -24,6 +24,7 @@ public class ReviewProblem3_2 {
         String[] names = new String[20];
         int numMyName = 0;
         int myNamePos = -1; //set to -1 as deflausf if none found yet
+        boolean foundCutten = false;
         
         //read in the data file and create chart
         try {
@@ -46,11 +47,21 @@ public class ReviewProblem3_2 {
                     if (myNamePos == -1) {
                         myNamePos = i;
                     }
+                } else if (names[i].equals("Cutten") && !foundCutten) { //Determine whether or not the name “Cutten” is found
+                    foundCutten = true;
                 }
             }
             
-            System.out.println("My name of Lukas was found: " + numMyName + " times"
-                    + "\nThe first occurence of my name was in position: " + myNamePos);
+            //List the names entered
+            System.out.println("The following were the names entered:");
+            for (int i = 0; i < 20; i++) {
+                System.out.println(" - " + names[i]);
+            }
+            
+            //display the analysis
+            System.out.println("\nMy name of Lukas was found: " + numMyName + " times"
+                    + "\nThe first occurence of my name was in array position: " + myNamePos + "\n"
+                    + "Found the name \"Cutten\": " + foundCutten);
             
         } catch (FileNotFoundException e) {
             //display the error
