@@ -22,8 +22,11 @@ public class ReviewProblem3_5 {
         // TODO code application logic here
         //vars
         int[] numSet;
+        int[] alonePos; //the positions in the numSet array where there is an alone number for the checked number
         int checkAlone;
         int arraySize = 0; //how big is the array in the data file
+        int numOfAlone; // how many lone numbers are there?
+        String output = "";
         
         //load the data file
         try {
@@ -47,17 +50,108 @@ public class ReviewProblem3_5 {
             
             //create a new scanner for reading the file again
             Scanner secondRead = new Scanner(file);
+            //set the scanner to exclude the number to check
+            secondRead.nextLine();
             
             //populate the array
             numSet = populateArray(numSet, secondRead);
             
+            //find out how many are lone
+            numOfAlone = getAloneNum(numSet, checkAlone);
+            
+            //gather all the indexes of number that are alone and need to be fixed
+            alonePos = new int[numOfAlone];
+            alonePos = getAlonePos(alonePos, numSet, checkAlone);
+            
+            //fix the array
+            numSet = fixAlone(numSet, alonePos);
+            
+            //output
+            output += "{";
             for (int i = 0; i < numSet.length; i++) {
-                System.out.println(numSet[i]);
+                output += numSet[i];
+                //check to add a comma
+                if (i < (numSet.length - 1)) {
+                    output += ",";
+                }
             }
+            
+            output += "}";
+            
+            System.out.println(output);
             
         } catch (FileNotFoundException e) {
             System.out.println("Error: " + e);
         }
+    }
+    
+    public static int[] fixAlone(int[] arrayNums, int[] aloneNums) {
+        int numLeft;
+        int numRight;
+        int bigNum;
+        
+        //go though all alone numbers
+        for (int i = 0; i < aloneNums.length; i++) {
+            //get the value of the numbers to each side
+            numLeft = arrayNums[aloneNums[i]-1];
+            numRight = arrayNums[aloneNums[i]+1];
+            
+            //find the bigger one
+            if (numLeft > numRight) {
+                bigNum = numLeft;
+            } else {
+                bigNum = numRight;
+            }
+            
+            //replace it
+            arrayNums[aloneNums[i]] = bigNum;
+            
+        }
+        
+        return  arrayNums;
+    }
+    
+    /**
+     * Find out how many alone numbers there are
+     * @param arrayNums the array containing the set that might have alone numbers (this is that the program will fix)
+     * @param checkForAlone the value to check to see if it anywhere alone
+     * @return 
+     */
+    public static int getAloneNum(int[] arrayNums, int checkForAlone) {
+        int numOfAlone = 0; //counts how many are alone
+        
+        //loop through the array to check if an index is alone (Ignor the first and last one as they are never alone)
+        for (int i = 1; i < (arrayNums.length - 1); i++) {
+            //compare it with the ones before and after
+            if ((arrayNums[i] != arrayNums[i-1]) && (arrayNums[i] != arrayNums[i+1]) && arrayNums[i] == checkForAlone) {
+                numOfAlone++;
+            }
+        }
+        return numOfAlone;
+    }
+    
+    /**
+     * Gather all the indexes of number that are alone and need to be fixed
+     * @param aloneNums an array that keeps the positon of alone numbers from arrayNums
+     * @param arrayNums the array containing the set that might have alone numbers (this is that the program will fix)
+     * @param checkForAlone the value to check to see if it anywhere alone
+     * @return 
+     */
+    public static int[] getAlonePos(int[] aloneNums, int[] arrayNums, int checkForAlone) {
+        //reset the counter
+        int numOfAlone = 0;
+        
+        //loop through the array again to check if an index is alone this time record it's position
+        for (int i = 1; i < (arrayNums.length - 1); i++) {
+            //compare it with the ones before and after
+            if ((arrayNums[i] != arrayNums[i-1]) && (arrayNums[i] != arrayNums[i+1]) && arrayNums[i] == checkForAlone) {
+                //store the position of the alone number
+                aloneNums[numOfAlone] = i;
+                numOfAlone++;
+            }
+        }
+        
+        return aloneNums;
     }
     
     /**
