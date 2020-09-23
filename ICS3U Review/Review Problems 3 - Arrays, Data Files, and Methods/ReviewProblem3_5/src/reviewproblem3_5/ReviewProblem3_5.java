@@ -85,6 +85,12 @@ public class ReviewProblem3_5 {
         }
     }
     
+    /**
+     * Fix the array so that every instance of the given value which is alone has been replaced by whichever value to its left or right is larger.
+     * @param arrayNums
+     * @param aloneNums
+     * @return 
+     */
     public static int[] fixAlone(int[] arrayNums, int[] aloneNums) {
         int numLeft;
         int numRight;
