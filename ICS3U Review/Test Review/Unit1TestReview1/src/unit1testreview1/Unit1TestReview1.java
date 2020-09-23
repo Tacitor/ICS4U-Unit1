@@ -32,6 +32,7 @@ public class Unit1TestReview1 {
         //int b = 4;
         //System.out.println(" " + a + b + " ");
         
+        /*
         int t = 8;
         int x = 99;
         while (t < 99) {
@@ -41,8 +42,9 @@ public class Unit1TestReview1 {
                 x+= (t/2);
             }
         }
-        System.out.println(t);
-        System.out.println(x);
+        */
+        //System.out.println(t);
+        System.out.println('6'-'2');
     }
     
 }
