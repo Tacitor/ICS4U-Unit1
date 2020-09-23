@@ -28,8 +28,8 @@ public class Unit1TestReview1 {
         
         //System.out.println(11%6);
         
-        //int a = 3;
-        //int b = 4;
+        int a = 3;
+        int b = 4;
         //System.out.println(" " + a + b + " ");
         
         /*
@@ -44,7 +44,18 @@ public class Unit1TestReview1 {
         }
         */
         //System.out.println(t);
-        System.out.println('6'-'2');
+        //System.out.println('6'-'2');
+        
+        int height = 175;
+        int weight = 70;
+
+        
+        //System.out.println(!(weight <= 75) && height >=180);
+        System.out.println(a + b + foo());
+    }
+    
+    public static String foo() {
+        return "foo";
     }
     
 }
